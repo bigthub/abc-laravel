@@ -140,6 +140,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        if (env('APP_ENV') == 'demo') {
+            return $this->out(4000, [], 'demo account Do Not Operate');
+        }
         $permission = Permission::findOrFail($id);
 
         // 让特定权限无法删除

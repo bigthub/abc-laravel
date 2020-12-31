@@ -169,6 +169,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        if (env('APP_ENV') == 'demo') {
+            return $this->out(4000, [], 'demo account Do Not Operate');
+        }
         $role = Role::findOrFail($id);
 
         if ($role->delete()) {
